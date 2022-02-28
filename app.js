@@ -49,7 +49,7 @@ const sections = [
     },
 ];
 app.use(express_1.default.json());
-app.use((0, cookie_session_1.default)({ signed: false, secure: true }));
+app.use((0, cookie_session_1.default)({ signed: false }));
 app.get("/api/sections", (req, res) => res.send(sections));
 app.use("/api", ts_express_1.AppRouter.router);
 app.use(express_common_1.ServerErrorHandler.HandleError);
