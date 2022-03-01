@@ -12,8 +12,13 @@ require("./routes/auth.router");
 require("./routes/order.router");
 require("./routes/products.router");
 require("./routes/user.router");
+const cors_1 = __importDefault(require("cors"));
 const app = (0, express_1.default)();
 exports.app = app;
+const whiteListUrls = process.env.WHITELIST_URLs
+    ? process.env.WHITELIST_URLs.split(",")
+    : [];
+app.use((0, cors_1.default)({ origin: whiteListUrls }));
 const sections = [
     {
         title: "hats",
@@ -49,7 +54,7 @@ const sections = [
     },
 ];
 app.use(express_1.default.json());
-app.use((0, cookie_session_1.default)({ signed: false }));
+app.use((0, cookie_session_1.default)({ signed: false, secure: true }));
 app.get("/api/sections", (req, res) => res.send(sections));
 app.use("/api", ts_express_1.AppRouter.router);
 app.use(express_common_1.ServerErrorHandler.HandleError);
