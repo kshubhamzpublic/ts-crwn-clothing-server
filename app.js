@@ -18,7 +18,7 @@ exports.app = app;
 const whiteListUrls = process.env.WHITELIST_URLs
     ? process.env.WHITELIST_URLs.split(",")
     : [];
-app.use((0, cors_1.default)({ origin: whiteListUrls }));
+app.use((0, cors_1.default)());
 const sections = [
     {
         title: "hats",
