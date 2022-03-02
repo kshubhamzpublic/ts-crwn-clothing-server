@@ -13,12 +13,12 @@ require("./routes/order.router");
 require("./routes/products.router");
 require("./routes/user.router");
 const cors_1 = __importDefault(require("cors"));
-const app = (0, express_1.default)({ origin: whiteListUrls });
+const app = (0, express_1.default)();
 exports.app = app;
 const whiteListUrls = process.env.WHITELIST_URLs
     ? process.env.WHITELIST_URLs.split(",")
     : [];
-app.use((0, cors_1.default)());
+app.use((0, cors_1.default)({ origin: whiteListUrls }));
 const sections = [
     {
         title: "hats",
